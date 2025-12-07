@@ -1,0 +1,3522 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acha Market - Store Digital Terlengkap & Terpercaya</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============ RESET & VARIABLES ============ */
+        :root {
+            --neon-pink: #ff00ff;
+            --neon-blue: #00ffff;
+            --neon-green: #00ff00;
+            --neon-purple: #bf00ff;
+            --neon-orange: #ff7700;
+            --neon-yellow: #ffff00;
+            --dark-bg: #0a0a16;
+            --darker-bg: #050510;
+            --card-bg: rgba(18, 18, 37, 0.95);
+            --card-border: rgba(255, 255, 255, 0.15);
+            --text-light: #ffffff;
+            --text-glow: rgba(255, 255, 255, 0.9);
+            --accent: #ff0080;
+            --gradient-primary: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+            --gradient-secondary: linear-gradient(135deg, #bf00ff 0%, #ff7700 100%);
+            --gradient-dark: linear-gradient(135deg, #0a0a16 0%, #1a1a2e 100%);
+            --shadow-neon: 0 0 20px rgba(255, 0, 255, 0.5);
+            --shadow-neon-blue: 0 0 20px rgba(0, 255, 255, 0.5);
+            --shadow-neon-green: 0 0 20px rgba(0, 255, 0, 0.5);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(255, 0, 255, 0.07) 0%, transparent 25%),
+                radial-gradient(circle at 90% 10%, rgba(0, 255, 255, 0.07) 0%, transparent 25%),
+                radial-gradient(circle at 50% 80%, rgba(0, 255, 0, 0.05) 0%, transparent 30%),
+                radial-gradient(circle at 20% 90%, rgba(191, 0, 255, 0.05) 0%, transparent 30%);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+
+        /* ============ ANIMATIONS ============ */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.05); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 15px var(--neon-pink); }
+            50% { box-shadow: 0 0 30px var(--neon-pink); }
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+
+        /* ============ LOADER ============ */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader-logo {
+            font-size: 4rem;
+            color: var(--neon-pink);
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite, float 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px var(--neon-pink));
+        }
+
+        .loading-text {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--neon-blue);
+        }
+
+        .loading-bar {
+            width: 400px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .loading-progress {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-blue));
+            border-radius: 3px;
+            animation: loading 2s ease-in-out forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loading-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes loading {
+            to { width: 100%; }
+        }
+
+        /* ============ HEADER ============ */
+        .top-bar {
+            background: rgba(5, 5, 16, 0.95);
+            padding: 0.8rem 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255, 0, 255, 0.3);
+            position: relative;
+            z-index: 1001;
+        }
+
+        .top-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 0, 255, 0.1), 
+                rgba(0, 255, 255, 0.1), 
+                transparent);
+        }
+
+        .top-bar-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-main {
+            background: rgba(10, 10, 22, 0.97);
+            backdrop-filter: blur(25px);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 0, 255, 0.4);
+            box-shadow: 0 5px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            font-size: 2.8rem;
+            color: var(--neon-pink);
+            filter: drop-shadow(0 0 20px var(--neon-pink));
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-title {
+            font-size: 2.2rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+            text-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+        }
+
+        .logo-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            letter-spacing: 3px;
+            margin-top: 0.3rem;
+            color: var(--neon-blue);
+            text-transform: uppercase;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 1rem;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 0, 255, 0.15);
+            color: var(--neon-pink);
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            background: rgba(255, 0, 255, 0.25);
+            color: var(--neon-pink);
+            box-shadow: var(--shadow-neon);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .cart-icon {
+            position: relative;
+            font-size: 1.7rem;
+            color: var(--neon-blue);
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+
+        .cart-icon:hover {
+            background: rgba(0, 255, 255, 0.1);
+            transform: scale(1.1);
+            color: var(--neon-blue);
+            filter: drop-shadow(0 0 10px var(--neon-blue));
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--neon-pink);
+            color: white;
+            font-size: 0.8rem;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            box-shadow: 0 0 10px var(--neon-pink);
+            animation: pulse 1.5s infinite;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ============ HERO ============ */
+        .hero-section {
+            position: relative;
+            padding: 8rem 2rem;
+            overflow: hidden;
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            isolation: isolate;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-dark);
+            z-index: -2;
+        }
+
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            margin-bottom: 1.8rem;
+            line-height: 1.1;
+            background: linear-gradient(45deg, 
+                var(--neon-pink) 0%, 
+                var(--neon-blue) 33%, 
+                var(--neon-green) 66%, 
+                var(--neon-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 40px rgba(255, 0, 255, 0.4);
+            animation: slideInLeft 1s ease-out;
+        }
+
+        .hero-tagline {
+            font-size: 2.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            color: var(--neon-blue);
+            font-weight: 300;
+            animation: slideInRight 1s ease-out 0.3s both;
+        }
+
+        .typewriter-container {
+            font-size: 1.8rem;
+            margin-bottom: 3rem;
+            min-height: 2.8rem;
+            display: inline-block;
+            position: relative;
+        }
+
+        .typewriter {
+            display: inline-block;
+            overflow: hidden;
+            border-right: 3px solid var(--neon-pink);
+            white-space: nowrap;
+            animation: typing 4s steps(50, end), blink-caret 0.75s step-end infinite;
+            background: linear-gradient(45deg, var(--neon-pink), var(--neon-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--neon-pink); }
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            min-width: 180px;
+            transition: transform 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-pink);
+            box-shadow: var(--shadow-neon);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--neon-blue);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.4s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.2), 
+                transparent);
+            transition: left 0.6s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-neon);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 0, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            border-color: var(--neon-blue);
+            box-shadow: var(--shadow-neon-blue);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #00ff00, #00cc00);
+            color: white;
+            box-shadow: var(--shadow-neon-green);
+        }
+
+        .btn-success:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 255, 0, 0.4);
+        }
+
+        /* ============ PROMO BANNER ============ */
+        .promo-banner {
+            background: linear-gradient(90deg, 
+                rgba(255, 0, 255, 0.2), 
+                rgba(0, 255, 255, 0.2), 
+                rgba(255, 0, 255, 0.2));
+            padding: 2rem;
+            margin: 0 2rem 4rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 0, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promo-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .promo-text {
+            flex: 1;
+        }
+
+        .promo-title {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--neon-pink);
+        }
+
+        .promo-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .promo-timer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .timer-title {
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            opacity: 0.8;
+            text-align: center;
+        }
+
+        .timer-display {
+            display: flex;
+            gap: 0.8rem;
+            justify-content: center;
+        }
+
+        .timer-unit {
+            text-align: center;
+            min-width: 60px;
+        }
+
+        .timer-number {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .timer-label {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 0.3rem;
+        }
+
+        /* ============ PRODUCTS ============ */
+        .products-section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 2rem auto 0;
+        }
+
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 4rem;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-btn {
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .filter-btn.active {
+            background: var(--gradient-primary);
+            color: white;
+            border-color: transparent;
+            box-shadow: var(--shadow-neon);
+            transform: translateY(-3px);
+        }
+
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid var(--card-border);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(15px);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: var(--neon-pink);
+            box-shadow: var(--shadow-neon);
+        }
+
+        .product-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            z-index: 1;
+            box-shadow: 0 5px 15px rgba(191, 0, 255, 0.3);
+        }
+
+        .product-badge.hot {
+            background: linear-gradient(135deg, #ff0000, #ff7700);
+        }
+
+        .product-badge.new {
+            background: linear-gradient(135deg, #00ffff, #0088ff);
+        }
+
+        .product-badge.best {
+            background: linear-gradient(135deg, #00ff00, #00cc00);
+        }
+
+        .product-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--neon-blue);
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text-light);
+            flex-grow: 0;
+        }
+
+        .product-price {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--neon-green);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+            flex-grow: 0;
+        }
+
+        .product-old-price {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: line-through;
+            margin-right: 0.8rem;
+        }
+
+        .product-discount {
+            background: var(--neon-pink);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .product-description {
+            font-size: 0.95rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            flex-grow: 0;
+        }
+
+        .product-features li {
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .product-features li i {
+            color: var(--neon-blue);
+            font-size: 0.8rem;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+        }
+
+        .btn-add-cart {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            font-size: 1rem;
+        }
+
+        .btn-add-cart:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--neon-blue);
+            color: var(--neon-blue);
+        }
+
+        .btn-buy {
+            flex: 1;
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-neon);
+            padding: 1rem;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .btn-buy:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 0, 255, 0.5);
+        }
+
+        /* ============ CART ============ */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -500px;
+            width: 500px;
+            height: 100%;
+            background: var(--card-bg);
+            backdrop-filter: blur(25px);
+            border-left: 1px solid rgba(255, 0, 255, 0.4);
+            z-index: 1002;
+            transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            padding: 2.5rem;
+            overflow-y: auto;
+            box-shadow: -10px 0 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cart-title {
+            font-size: 1.8rem;
+            color: var(--neon-pink);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+
+        .close-cart:hover {
+            color: var(--neon-pink);
+            background: rgba(255, 0, 255, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: 3rem 0;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .cart-items {
+            margin-bottom: 2.5rem;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cart-item-img {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--neon-blue);
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cart-item-price {
+            color: var(--neon-green);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .quantity-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text-light);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .quantity-btn:hover {
+            background: var(--neon-pink);
+            transform: scale(1.1);
+        }
+
+        .quantity-value {
+            min-width: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+
+        .cart-item-remove:hover {
+            color: var(--neon-pink);
+            background: rgba(255, 0, 255, 0.1);
+            transform: rotate(15deg);
+        }
+
+        .cart-summary {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .cart-summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--neon-pink);
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cart-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn-clear-cart {
+            background: rgba(255, 0, 0, 0.1);
+            color: #ff5555;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+
+        .btn-clear-cart:hover {
+            background: rgba(255, 0, 0, 0.2);
+            border-color: #ff5555;
+        }
+
+        /* ============ TESTIMONIALS ============ */
+        .testimonials-section {
+            padding: 6rem 2rem;
+            background: rgba(5, 5, 16, 0.7);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 20%, rgba(255, 0, 255, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .testimonials-slider {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 3.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            backdrop-filter: blur(15px);
+            transform-style: preserve-3d;
+            transition: transform 0.4s;
+        }
+
+        .testimonial-rating {
+            color: var(--neon-yellow);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            position: relative;
+            padding: 0 2rem;
+        }
+
+        .testimonial-text::before,
+        .testimonial-text::after {
+            content: '"';
+            font-size: 4rem;
+            color: var(--neon-pink);
+            opacity: 0.3;
+            position: absolute;
+        }
+
+        .testimonial-text::before {
+            top: -20px;
+            left: 0;
+        }
+
+        .testimonial-text::after {
+            bottom: -40px;
+            right: 0;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            border: 3px solid var(--neon-pink);
+        }
+
+        .author-info {
+            text-align: left;
+        }
+
+        .author-name {
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .author-role {
+            font-size: 1rem;
+            opacity: 0.7;
+            color: var(--neon-blue);
+        }
+
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .slider-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .slider-btn:hover {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            transform: scale(1.1);
+            box-shadow: var(--shadow-neon);
+        }
+
+        /* ============ FAQ ============ */
+        .faq-section {
+            padding: 6rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--neon-pink);
+            box-shadow: var(--shadow-neon);
+        }
+
+        .faq-question {
+            padding: 1.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--neon-pink);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.8rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 1.8rem 1.8rem;
+            max-height: 1000px;
+        }
+
+        /* ============ FOOTER ============ */
+        .footer-section {
+            background: rgba(5, 5, 16, 0.95);
+            padding: 6rem 2rem 2rem;
+            border-top: 1px solid rgba(255, 0, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--gradient-primary);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 4rem;
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: var(--neon-pink);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+
+        .footer-about {
+            font-size: 1rem;
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon-blue);
+            transform: translateX(5px);
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .contact-item i {
+            color: var(--neon-pink);
+            font-size: 1.2rem;
+            width: 24px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-link:hover {
+            background: var(--gradient-primary);
+            transform: translateY(-5px) scale(1.1);
+            border-color: transparent;
+            box-shadow: var(--shadow-neon);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 1400px;
+            margin: 0 auto;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .payment-icon {
+            width: 50px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        /* ============ BACK TO TOP ============ */
+        .back-to-top {
+            position: fixed;
+            bottom: 2.5rem;
+            right: 2.5rem;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-neon);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-10px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(255, 0, 255, 0.5);
+        }
+
+        /* ============ MODAL ============ */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: flex-start; /* GANTI dari center ke flex-start */
+    justify-content: center;
+    z-index: 1003;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s;
+    backdrop-filter: blur(15px);
+    overflow-y: auto; /* TAMBAH INI */
+    padding: 2rem 1rem; /* TAMBAH padding */
+}
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 4rem;
+            max-width: 600px;
+            width: 90%;
+            border: 1px solid rgba(255, 0, 255, 0.4);
+            position: relative;
+            transform: translateY(30px) scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+
+        .modal-close:hover {
+            color: var(--neon-pink);
+            background: rgba(255, 0, 255, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            font-size: 1rem;
+            color: var(--text-light);
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* ============ NOTIFICATION ============ */
+        .notification {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            z-index: 1004;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            backdrop-filter: blur(20px);
+            border: 1px solid;
+            transform: translateX(500px);
+            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            max-width: 400px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification-success {
+            background: rgba(39, 174, 96, 0.2);
+            border-color: rgba(39, 174, 96, 0.5);
+            color: #27ae60;
+        }
+
+        .notification-error {
+            background: rgba(231, 76, 60, 0.2);
+            border-color: rgba(231, 76, 60, 0.5);
+            color: #e74c3c;
+        }
+
+        .notification-info {
+            background: rgba(52, 152, 219, 0.2);
+            border-color: rgba(52, 152, 219, 0.5);
+            color: #3498db;
+        }
+
+        .notification-warning {
+            background: rgba(241, 196, 15, 0.2);
+            border-color: rgba(241, 196, 15, 0.5);
+            color: #f1c40f;
+        }
+
+        .notification-icon {
+            font-size: 1.5rem;
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-title {
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .notification-message {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .notification-close {
+            background: none;
+            border: none;
+            color: inherit;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .notification-close:hover {
+            opacity: 1;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 3.8rem;
+            }
+            
+            .products-container {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .cart-sidebar {
+                width: 450px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3.2rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .promo-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .header-container {
+                flex-wrap: wrap;
+            }
+            
+            .nav-container {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 280px;
+                height: 100%;
+                background: var(--card-bg);
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                transition: left 0.4s;
+                z-index: 1001;
+                backdrop-filter: blur(20px);
+                border-right: 1px solid rgba(255, 0, 255, 0.3);
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.5rem;
+            }
+            
+            .hero-stats {
+                gap: 1.5rem;
+            }
+            
+            .stat-item {
+                min-width: 140px;
+                padding: 1.2rem;
+            }
+            
+            .stat-number {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.3rem;
+            }
+            
+            .products-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .testimonial-card {
+                padding: 2.5rem 2rem;
+            }
+            
+            .testimonial-text {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .modal-content {
+                padding: 3rem 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section {
+                padding: 6rem 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.3rem;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .category-filter {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .product-card {
+                padding: 2rem;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .back-to-top {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader">
+        <div class="loader-logo">
+            <i class="fas fa-bolt"></i>
+        </div>
+        <h2 style="color: var(--neon-pink); margin-bottom: 1.5rem; font-size: 2rem;">ACHA MARKET</h2>
+        <div class="loading-text">Loading Premium Digital Store...</div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+    </div>
+
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div>🔥 <strong>PROMO:</strong> Panel Unlimited Hanya Rp 12.000! 🔥</div>
+            <div><i class="fas fa-headset"></i> Support 24/7: achashopsuport@gmail.com</div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header-main">
+        <div class="header-container">
+            <div class="logo-container" onclick="scrollToTop()">
+                <i class="fas fa-bolt logo-icon"></i>
+                <div class="logo-text">
+                    <span class="logo-title">ACHA MARKET</span>
+                    <span class="logo-subtitle">DIGITAL PREMIUM STORE</span>
+                </div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <div class="nav-container">
+                <ul class="nav-menu" id="navMenu">
+                    <li class="nav-item"><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="nav-item"><a href="#products" class="nav-link"><i class="fas fa-box"></i> Semua Produk</a></li>
+                    <li class="nav-item"><a href="#promo" class="nav-link"><i class="fas fa-fire"></i> Promo</a></li>
+                    <li class="nav-item"><a href="#testimonials" class="nav-link"><i class="fas fa-star"></i> Testimoni</a></li>
+                    <li class="nav-item"><a href="#faq" class="nav-link"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                </ul>
+                
+                <div class="header-actions">
+                    <div class="cart-icon" id="cartIcon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3 class="cart-title"><i class="fas fa-shopping-cart"></i> Keranjang Belanja</h3>
+            <button class="close-cart" id="closeCart"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be added here -->
+        </div>
+        
+        <div class="cart-summary">
+            <div class="cart-summary-row">
+                <span>Subtotal:</span>
+                <span>Rp <span id="cartSubtotal">0</span></span>
+            </div>
+            <div class="cart-summary-row">
+                <span>Diskon:</span>
+                <span>- Rp <span id="cartDiscount">0</span></span>
+            </div>
+            <div class="cart-total">
+                <span>TOTAL:</span>
+                <span>Rp <span id="cartTotal">0</span></span>
+            </div>
+        </div>
+        
+        <div class="cart-actions">
+            <button class="btn btn-clear-cart" id="clearCart">
+                <i class="fas fa-trash"></i> Kosongkan Keranjang
+            </button>
+            <button class="btn btn-primary" id="checkoutBtn">
+                <i class="fas fa-shopping-bag"></i> Checkout Sekarang
+            </button>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="hero-bg"></div>
+        <div class="hero-particles" id="particles"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">ACHA MARKET OFFICIAL</h1>
+            <div class="hero-tagline">Digital Store Terlengkap & Terpercaya</div>
+            
+            <div class="typewriter-container">
+                <span class="typewriter">☑️ Layanan Premium • Fast Response • 100% Garansi ☑️</span>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Pelanggan</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">99.8%</div>
+                    <div class="stat-label">Kepuasan</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Support</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">GARANSI</div>
+                </div>
+            </div>
+            
+            <div class="hero-cta">
+                <a href="#products" class="btn btn-primary">
+                    <i class="fas fa-shopping-bag"></i> Belanja Sekarang
+                </a>
+                <a href="#testimonials" class="btn btn-secondary">
+                    <i class="fas fa-play-circle"></i> Lihat Testimoni
+                </a>
+                <a href="https://wa.me/6281234567890" target="_blank" class="btn btn-success">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Admin
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Banner -->
+    <section class="promo-banner" id="promo">
+        <div class="promo-content">
+            <div class="promo-text">
+                <h2 class="promo-title">🔥 DISCOUNT MEGA SALE 🔥</h2>
+                <p class="promo-subtitle">Diskon hingga 50% untuk semua produk! Buruan sebelum kehabisan!</p>
+            </div>
+            <div class="promo-timer">
+                <div class="timer-title">Berakhir dalam:</div>
+                <div class="timer-display">
+                    <div class="timer-unit">
+                        <div class="timer-number" id="days">00</div>
+                        <div class="timer-label">Hari</div>
+                    </div>
+                    <div class="timer-unit">
+                        <div class="timer-number" id="hours">00</div>
+                        <div class="timer-label">Jam</div>
+                    </div>
+                    <div class="timer-unit">
+                        <div class="timer-number" id="minutes">00</div>
+                        <div class="timer-label">Menit</div>
+                    </div>
+                    <div class="timer-unit">
+                        <div class="timer-number" id="seconds">00</div>
+                        <div class="timer-label">Detik</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <div class="section-header">
+            <h2 class="section-title">Katalog Produk Lengkap</h2>
+            <p class="section-subtitle">Pilih dari ratusan produk digital premium dengan harga terbaik di pasaran</p>
+        </div>
+        
+        <div class="category-filter" id="categoryFilter">
+            <!-- Category filter buttons will be generated by JavaScript -->
+        </div>
+        
+        <div class="products-container" id="productsContainer">
+            <!-- Products will be generated by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="section-header">
+            <h2 class="section-title">Testimoni Pelanggan</h2>
+            <p class="section-subtitle">Ribuan pelanggan telah mempercayai kebutuhan digital mereka pada kami</p>
+        </div>
+        
+        <div class="testimonials-slider">
+            <div class="testimonial-card">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="testimonial-text">
+                    "Pelayanan sangat cepat dan ramah! Panelnya stabil banget, sudah 6 bulan pakai dan tidak ada kendala. Recommended banget buat yang butuh server murah tapi berkualitas!"
+                </div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AR</div>
+                    <div class="author-info">
+                        <div class="author-name">Ahmad Rizki</div>
+                        <div class="author-role">Developer & Reseller Panel</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="slider-controls">
+                <button class="slider-btn prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-btn next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+        <div class="section-header">
+            <h2 class="section-title">FAQ - Pertanyaan Umum</h2>
+            <p class="section-subtitle">Temukan jawaban untuk pertanyaan yang sering diajukan pelanggan kami</p>
+        </div>
+        
+        <div class="faq-list">
+            <div class="faq-item">
+                <div class="faq-question">
+                    Bagaimana cara melakukan pembelian produk?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>1. Pilih produk yang ingin dibeli<br>
+                    2. Klik tombol "Beli Sekarang"<br>
+                    3. Isi form pemesanan dengan data lengkap<br>
+                    4. Lakukan pembayaran sesuai instruksi<br>
+                    5. Kirim bukti transfer ke admin<br>
+                    6. Produk akan dikirim setelah pembayaran dikonfirmasi</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Berapa lama proses pengiriman produk?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>• Produk digital (panel, akun premium, dll): INSTANT (1-5 menit setelah konfirmasi)<br>
+                    • Top up game: INSTANT (1-10 menit)<br>
+                    • Jasa (unbanned, banned, dll): 1-24 jam tergantung kompleksitas<br>
+                    • Pulsa & kuota: 1-30 menit</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Apakah ada garansi untuk semua produk?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>✅ YA! Semua produk bergaransi:<br>
+                    • Panel Pterodactyl: GARANSI LIFETIME<br>
+                    • Top up game: Garansi 30 hari<br>
+                    • Akun premium: Garansi sesuai masa aktif<br>
+                    • Jasa: Garansi sesuai ketentuan layanan<br>
+                    • Jika ada masalah, kami proses refund atau penggantian</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Metode pembayaran apa saja yang tersedia?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Kami menerima berbagai metode pembayaran:<br>
+                    • Transfer Bank (BCA, BRI, BNI, Mandiri)<br>
+                    • E-Wallet (DANA, OVO, GoPay, ShopeePay)<br>
+                    • QRIS (Semua bank dan e-wallet)<br>
+                    • Pulsa (untuk transaksi kecil)<br>
+                    • Crypto (BTC, ETH, USDT)</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Apakah bisa menjadi reseller?
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p>✅ BISA! Kami membuka kesempatan untuk menjadi reseller dengan keuntungan menarik:<br>
+                    • Harga khusus reseller<br>
+                    • Panel reseller dengan harga grosir<br>
+                    • Support penuh untuk reseller<br>
+                    • Komisi dari setiap penjualan<br>
+                    • Sistem white label available<br>
+                    Hubungi admin untuk info lengkap!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>Acha Market</h3>
+                <p class="footer-about">
+                    Toko digital terpercaya dengan layanan premium sejak 2020. 
+                    Menyediakan berbagai produk digital dengan harga terjangkau 
+                    dan kualitas terjamin. Bergaransi 100% dan fast response.
+                </p>
+                <div class="social-links">
+                    <a href="https://wa.me/6281234567890" target="_blank" class="social-link">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://t.me/achamarket" target="_blank" class="social-link">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://instagram.com/achamarket" target="_blank" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://facebook.com/achamarket" target="_blank" class="social-link">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://youtube.com/achamarket" target="_blank" class="social-link">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Produk Populer</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-server"></i> Panel Pterodactyl</a></li>
+                    <li><a href="#"><i class="fas fa-globe"></i> NOKOS Luar Negeri</a></li>
+                    <li><a href="#"><i class="fab fa-whatsapp"></i> Bug WhatsApp</a></li>
+                    <li><a href="#"><i class="fas fa-crown"></i> App Premium</a></li>
+                    <li><a href="#"><i class="fas fa-gamepad"></i> Top Up Game</a></li>
+                    <li><a href="#"><i class="fas fa-mobile-alt"></i> Pulsa & Kuota</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Layanan</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-headset"></i> Customer Support</a></li>
+                    <li><a href="#"><i class="fas fa-sync-alt"></i> Garansi Produk</a></li>
+                    <li><a href="#"><i class="fas fa-shipping-fast"></i> Pengiriman Instant</a></li>
+                    <li><a href="#"><i class="fas fa-lock"></i> Keamanan Transaksi</a></li>
+                    <li><a href="#"><i class="fas fa-tags"></i> Program Reseller</a></li>
+                    <li><a href="#"><i class="fas fa-gift"></i> Promo & Diskon</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Kontak Kami</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+62 812-3456-7890</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>support@achamarket.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Indonesia</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Buka 24/7</span>
+                    </div>
+                </div>
+                <a href="https://wa.me/6281234567890" target="_blank" class="btn btn-primary" style="margin-top: 1.5rem; width: 100%;">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Support
+                </a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="payment-methods">
+                <div class="payment-icon"><i class="fas fa-university"></i></div>
+                <div class="payment-icon"><i class="fab fa-cc-visa"></i></div>
+                <div class="payment-icon"><i class="fab fa-cc-mastercard"></i></div>
+                <div class="payment-icon"><i class="fas fa-qrcode"></i></div>
+                <div class="payment-icon"><i class="fab fa-bitcoin"></i></div>
+            </div>
+            <p>&copy; 2020-2025 Acha Market Official. All rights reserved.</p>
+            <p>🔥 Layanan Terbaik • Fast Response • Harga Terjangkau • 100% Garansi 🔥</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#home" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
+
+    <!-- Order Modal -->
+    <div class="modal" id="orderModal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal"><i class="fas fa-times"></i></button>
+            <h2 class="section-title" style="font-size: 2.2rem; margin-bottom: 2rem;">Form Pemesanan</h2>
+            <form id="orderForm">
+                <div class="form-group">
+                    <label for="modalProductName">Produk yang Dibeli</label>
+                    <input type="text" id="modalProductName" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="modalProductPrice">Harga Produk</label>
+                    <input type="text" id="modalProductPrice" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="customerName">Nama Lengkap *</label>
+                    <input type="text" id="customerName" class="form-control" required placeholder="Masukkan nama lengkap">
+                </div>
+                <div class="form-group">
+                    <label for="customerWhatsApp">Nomor WhatsApp *</label>
+                    <input type="text" id="customerWhatsApp" class="form-control" required placeholder="Contoh: 081234567890">
+                </div>
+                <div class="form-group">
+                    <label for="customerEmail">Email (Opsional)</label>
+                    <input type="email" id="customerEmail" class="form-control" placeholder="Masukkan email untuk notifikasi">
+                </div>
+                <div class="form-group">
+                    <label for="paymentMethod">Metode Pembayaran *</label>
+                    <select id="paymentMethod" class="form-control" required>
+                        <option value="">Pilih metode pembayaran</option>
+                        <option value="transfer">Transfer Bank</option>
+                        <option value="ewallet">E-Wallet</option>
+                        <option value="qris">QRIS</option>
+                        <option value="pulsa">Pulsa</option>
+                        <option value="crypto">Crypto</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.2rem; font-size: 1.1rem;">
+                    <i class="fas fa-paper-plane"></i> Kirim Pesanan ke Admin
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notificationContainer"></div>
+
+    <script>
+        // ==================== DATA PRODUK LENGKAP ====================
+        const products = {
+            panel: [
+                { 
+                    id: 1, 
+                    name: "RAM 1GB Panel Pterodactyl", 
+                    price: 1000, 
+                    oldPrice: 2000,
+                    description: "Panel server dengan RAM 1GB untuk hosting website atau bot.",
+                    features: ["Garansi Lifetime", "Full Access", "Support 24/7", "Instant Setup"],
+                    icon: "fa-server",
+                    badge: "NEW"
+                },
+                { 
+                    id: 2, 
+                    name: "RAM 2GB Panel Pterodactyl", 
+                    price: 2000, 
+                    oldPrice: 4000,
+                    description: "Panel server dengan RAM 2GB cocok untuk bot medium traffic.",
+                    features: ["Garansi Lifetime", "Full Access", "Support 24/7", "Instant Setup"],
+                    icon: "fa-server",
+                    badge: "POPULER"
+                },
+                { 
+                    id: 3, 
+                    name: "RAM 4GB Panel Pterodactyl", 
+                    price: 4000, 
+                    oldPrice: 8000,
+                    description: "Panel server RAM 4GB untuk aplikasi dengan traffic tinggi.",
+                    features: ["Garansi Lifetime", "Full Access", "Support 24/7", "Instant Setup"],
+                    icon: "fa-server",
+                    badge: "BEST"
+                },
+                { 
+                    id: 4, 
+                    name: "RAM 8GB Panel Pterodactyl", 
+                    price: 8000, 
+                    oldPrice: 16000,
+                    description: "Panel server RAM 8GB untuk kebutuhan enterprise.",
+                    features: ["Garansi Lifetime", "Full Access", "Support 24/7", "Instant Setup"],
+                    icon: "fa-server"
+                },
+                { 
+                    id: 5, 
+                    name: "RAM Unlimited Panel", 
+                    price: 12000, 
+                    oldPrice: 25000,
+                    description: "Panel dengan RAM unlimited, cocok untuk heavy duty.",
+                    features: ["Garansi Lifetime", "Unlimited RAM", "Priority Support", "Instant Setup"],
+                    icon: "fa-server",
+                    badge: "HOT"
+                },
+                { 
+                    id: 6, 
+                    name: "Reseller Panel Package", 
+                    price: 15000, 
+                    oldPrice: 30000,
+                    description: "Paket lengkap untuk reseller panel dengan harga grosir.",
+                    features: ["Harga Reseller", "Full Access", "White Label", "Training"],
+                    icon: "fa-users",
+                    badge: "RESELLER"
+                }
+            ],
+            nokos: [
+                { 
+                    id: 7, 
+                    name: "CHINA 🇨🇳 NOKOS 7 Hari", 
+                    price: 10000, 
+                    oldPrice: 20000,
+                    description: "Nomor kosong China untuk verifikasi berbagai aplikasi.",
+                    features: ["Fresh Number", "Receive SMS", "7 Days Active", "High Success"],
+                    icon: "fa-globe-asia",
+                    badge: "NEW"
+                },
+                { 
+                    id: 8, 
+                    name: "MOROCCO 🇲🇦 NOKOS 7 Hari", 
+                    price: 6000, 
+                    oldPrice: 12000,
+                    description: "Nomor kosong Morocco dengan harga terjangkau.",
+                    features: ["Fresh Number", "Receive SMS", "7 Days Active", "Multi App"],
+                    icon: "fa-globe-africa"
+                },
+                { 
+                    id: 9, 
+                    name: "PHILIPPINES 🇵🇭 NOKOS 7 Hari", 
+                    price: 6000, 
+                    oldPrice: 12000,
+                    description: "Nomor kosong Philippines untuk verifikasi internasional.",
+                    features: ["Fresh Number", "Receive SMS", "7 Days Active", "WhatsApp Ready"],
+                    icon: "fa-globe-asia"
+                },
+                { 
+                    id: 10, 
+                    name: "MALAYSIA 🇲🇾 NOKOS 7 Hari", 
+                    price: 12000, 
+                    oldPrice: 24000,
+                    description: "Nomor kosong Malaysia premium untuk semua aplikasi.",
+                    features: ["Fresh Number", "Receive SMS", "7 Days Active", "All App Support"],
+                    icon: "fa-globe-asia",
+                    badge: "POPULER"
+                },
+                { 
+                    id: 11, 
+                    name: "KENYA 🇰🇪 NOKOS 7 Hari", 
+                    price: 5000, 
+                    oldPrice: 10000,
+                    description: "Nomor kosong Kenya murah untuk keperluan verifikasi.",
+                    features: ["Fresh Number", "Receive SMS", "7 Days Active", "Budget Friendly"],
+                    icon: "fa-globe-africa"
+                },
+                { 
+                    id: 12, 
+                    name: "SOUTH AFRICA 🇿🇦 NOKOS 7 Hari", 
+                    price: 5000, 
+                    oldPrice: 10000,
+                    description: "Nomor kosong South Africa untuk berbagai keperluan.",
+                    features: ["Fresh Number", "Receive SMS", "7 Days Active", "Stable Connection"],
+                    icon: "fa-globe-africa"
+                },
+                { 
+                    id: 13, 
+                    name: "CAMEROON 🇨🇲 NOKOS 7 Hari", 
+                    price: 5000, 
+                    oldPrice: 10000,
+                    description: "Nomor kosong Cameroon dengan kualitas terbaik.",
+                    features: ["Fresh Number", "Receive SMS", "7 Days Active", "High Quality"],
+                    icon: "fa-globe-africa"
+                },
+                { 
+                    id: 14, 
+                    name: "PALESTINE 🇵🇸 NOKOS 7 Hari", 
+                    price: 10000, 
+                    oldPrice: 20000,
+                    description: "Nomor kosong Palestine premium untuk semua aplikasi.",
+                    features: ["Fresh Number", "Receive SMS", "7 Days Active", "Premium Quality"],
+                    icon: "fa-globe-asia"
+                },
+                { 
+                    id: 15, 
+                    name: "GHANA 🇬🇭 NOKOS 7 Hari", 
+                    price: 6000, 
+                    oldPrice: 12000,
+                    description: "Nomor kosong Ghana dengan sukses rate tinggi.",
+                    features: ["Fresh Number", "Receive SMS", "7 Days Active", "High Success Rate"],
+                    icon: "fa-globe-africa"
+                },
+                { 
+                    id: 16, 
+                    name: "GAMBIA 🇬🇲 NOKOS 7 Hari", 
+                    price: 7000, 
+                    oldPrice: 14000,
+                    description: "Nomor kosong Gambia untuk keperluan khusus.",
+                    features: ["Fresh Number", "Receive SMS", "7 Days Active", "Special Purpose"],
+                    icon: "fa-globe-africa"
+                }
+            ],
+            bug: [
+                { 
+                    id: 17, 
+                    name: "Bug WhatsApp Akses 1 Bulan", 
+                    price: 25000, 
+                    oldPrice: 50000,
+                    description: "Akses bug WhatsApp premium selama 1 bulan penuh.",
+                    features: ["Full Feature", "30 Days Access", "Regular Updates", "Support 24/7"],
+                    icon: "fab fa-whatsapp",
+                    badge: "NEW"
+                },
+                { 
+                    id: 18, 
+                    name: "Bug WhatsApp Akses Permanen", 
+                    price: 45000, 
+                    oldPrice: 90000,
+                    description: "Akses bug WhatsApp premium permanen lifetime.",
+                    features: ["Full Feature", "Lifetime Access", "Lifetime Updates", "Priority Support"],
+                    icon: "fab fa-whatsapp",
+                    badge: "POPULER"
+                },
+                { 
+                    id: 19, 
+                    name: "Reseller Bug WhatsApp", 
+                    price: 65000, 
+                    oldPrice: 130000,
+                    description: "Paket reseller bug WhatsApp dengan keuntungan besar.",
+                    features: ["Reseller License", "Sub-Reseller System", "Marketing Materials", "Full Support"],
+                    icon: "fa-users",
+                    badge: "RESELLER"
+                },
+                { 
+                    id: 20, 
+                    name: "Owner Bug WhatsApp", 
+                    price: 85000, 
+                    oldPrice: 170000,
+                    description: "Paket owner dengan semua fitur premium.",
+                    features: ["All Features", "White Label", "Custom Branding", "VIP Support"],
+                    icon: "fa-crown",
+                    badge: "VIP"
+                },
+                { 
+                    id: 21, 
+                    name: "Partner Bug WhatsApp", 
+                    price: 100000, 
+                    oldPrice: 200000,
+                    description: "Paket partner dengan profit sharing system.",
+                    features: ["Profit Sharing", "Full System", "Training", "Business Support"],
+                    icon: "fa-handshake",
+                    badge: "PARTNER"
+                },
+                { 
+                    id: 22, 
+                    name: "Moderator Bug WhatsApp", 
+                    price: 125000, 
+                    oldPrice: 250000,
+                    description: "Paket moderator dengan akses penuh sistem.",
+                    features: ["Full Access", "Admin Panel", "User Management", "Revenue Share"],
+                    icon: "fa-user-shield",
+                    badge: "MODERATOR"
+                }
+            ],
+            premium: [
+                { 
+                    id: 23, 
+                    name: "YouTube Premium 1 Tahun", 
+                    price: 7000, 
+                    oldPrice: 14000,
+                    description: "Akun YouTube Premium 1 tahun tanpa iklan.",
+                    features: ["No Ads", "Background Play", "Offline Download", "Music Premium"],
+                    icon: "fab fa-youtube",
+                    badge: "HOT"
+                },
+                { 
+                    id: 24, 
+                    name: "Netflix Premium 1 Bulan", 
+                    price: 23000, 
+                    oldPrice: 46000,
+                    description: "Akun Netflix Premium 4K UHD 1 bulan.",
+                    features: ["4K UHD", "4 Screens", "No Ads", "All Regions"],
+                    icon: "fab fa-netflix",
+                    badge: "POPULER"
+                },
+                { 
+                    id: 25, 
+                    name: "Spotify Premium 1 Tahun", 
+                    price: 15000, 
+                    oldPrice: 30000,
+                    description: "Akun Spotify Premium 1 tahun unlimited.",
+                    features: ["No Ads", "Unlimited Skips", "Download Music", "High Quality"],
+                    icon: "fab fa-spotify"
+                },
+                { 
+                    id: 26, 
+                    name: "Canva Pro 1 Tahun", 
+                    price: 5000, 
+                    oldPrice: 10000,
+                    description: "Akun Canva Pro 1 tahun full features.",
+                    features: ["All Templates", "Premium Elements", "Brand Kit", "Magic Resize"],
+                    icon: "fab fa-canva",
+                    badge: "NEW"
+                },
+                { 
+                    id: 27, 
+                    name: "ChatGPT Plus 1 Bulan", 
+                    price: 15000, 
+                    oldPrice: 30000,
+                    description: "Akun ChatGPT Plus 1 bulan akses GPT-4.",
+                    features: ["GPT-4 Access", "No Limits", "Web Browsing", "Plugins"],
+                    icon: "fa-robot",
+                    badge: "AI"
+                },
+                { 
+                    id: 28, 
+                    name: "Adobe Creative Cloud 1 Tahun", 
+                    price: 50000, 
+                    oldPrice: 100000,
+                    description: "Akun Adobe CC semua aplikasi 1 tahun.",
+                    features: ["All Apps", "Latest Version", "Cloud Storage", "Updates"],
+                    icon: "fa-palette"
+                },
+                { 
+                    id: 29, 
+                    name: "Microsoft Office 365 1 Tahun", 
+                    price: 25000, 
+                    oldPrice: 50000,
+                    description: "Akun Office 365 1 tahun 5 devices.",
+                    features: ["All Apps", "5 Devices", "1TB Cloud", "Updates"],
+                    icon: "fa-file-word"
+                },
+                { 
+                    id: 30, 
+                    name: "Disney+ Hotstar 1 Tahun", 
+                    price: 30000, 
+                    oldPrice: 60000,
+                    description: "Akun Disney+ Hotstar 1 tahun 4K.",
+                    features: ["4K Content", "4 Screens", "All Content", "No Ads"],
+                    icon: "fa-film"
+                }
+            ],
+            roblox: [
+                { 
+                    id: 31, 
+                    name: "100 Robux (Indonesia)", 
+                    price: 15000, 
+                    oldPrice: 20000,
+                    description: "Top up 100 Robux untuk akun Roblox Indonesia.",
+                    features: ["Instant Delivery", "Official Robux", "Any Region", "Safe & Secure"],
+                    icon: "fa-cube",
+                    badge: "MURAH"
+                },
+                { 
+                    id: 32, 
+                    name: "500 Robux (Indonesia)", 
+                    price: 73000, 
+                    oldPrice: 85000,
+                    description: "Top up 500 Robux untuk akun Roblox Indonesia.",
+                    features: ["Instant Delivery", "Official Robux", "Any Region", "Safe & Secure"],
+                    icon: "fa-cube"
+                },
+                { 
+                    id: 33, 
+                    name: "1000 Robux (Indonesia)", 
+                    price: 145000, 
+                    oldPrice: 170000,
+                    description: "Top up 1000 Robux untuk akun Roblox Indonesia.",
+                    features: ["Instant Delivery", "Official Robux", "Any Region", "Safe & Secure"],
+                    icon: "fa-cube",
+                    badge: "POPULER"
+                },
+                { 
+                    id: 34, 
+                    name: "2000 Robux (Indonesia)", 
+                    price: 286000, 
+                    oldPrice: 340000,
+                    description: "Top up 2000 Robux untuk akun Roblox Indonesia.",
+                    features: ["Instant Delivery", "Official Robux", "Any Region", "Safe & Secure"],
+                    icon: "fa-cube"
+                },
+                { 
+                    id: 35, 
+                    name: "5000 Robux (Indonesia)", 
+                    price: 755000, 
+                    oldPrice: 900000,
+                    description: "Top up 5000 Robux untuk akun Roblox Indonesia.",
+                    features: ["Instant Delivery", "Official Robux", "Any Region", "Safe & Secure"],
+                    icon: "fa-cube"
+                },
+                { 
+                    id: 36, 
+                    name: "10000 Robux (Indonesia)", 
+                    price: 1510000, 
+                    oldPrice: 1800000,
+                    description: "Top up 10000 Robux untuk akun Roblox Indonesia.",
+                    features: ["Instant Delivery", "Official Robux", "Any Region", "Safe & Secure"],
+                    icon: "fa-cube",
+                    badge: "BEST"
+                }
+            ],
+            ml: [
+                { 
+                    id: 37, 
+                    name: "36 Diamond ML", 
+                    price: 10500, 
+                    oldPrice: 12000,
+                    description: "Top up 36 Diamond Mobile Legends.",
+                    features: ["Instant Delivery", "All Servers", "Auto Process", "Safe"],
+                    icon: "fa-gamepad"
+                },
+                { 
+                    id: 38, 
+                    name: "100 Diamond ML", 
+                    price: 27500, 
+                    oldPrice: 30000,
+                    description: "Top up 100 Diamond Mobile Legends.",
+                    features: ["Instant Delivery", "All Servers", "Auto Process", "Safe"],
+                    icon: "fa-gamepad"
+                },
+                { 
+                    id: 39, 
+                    name: "344 Diamond ML", 
+                    price: 79300, 
+                    oldPrice: 85000,
+                    description: "Top up 344 Diamond Mobile Legends.",
+                    features: ["Instant Delivery", "All Servers", "Auto Process", "Safe"],
+                    icon: "fa-gamepad",
+                    badge: "BEST DEAL"
+                },
+                { 
+                    id: 40, 
+                    name: "Starlight Membership", 
+                    price: 80000, 
+                    oldPrice: 90000,
+                    description: "Starlight Membership Mobile Legends.",
+                    features: ["Starlight Skin", "Extra Rewards", "Exclusive Border", "Instant"],
+                    icon: "fa-crown",
+                    badge: "VIP"
+                },
+                { 
+                    id: 41, 
+                    name: "Weekly Diamond Pass", 
+                    price: 28700, 
+                    oldPrice: 32000,
+                    description: "Weekly Diamond Pass Mobile Legends.",
+                    features: ["Daily Diamonds", "7 Days", "Extra Rewards", "Instant"],
+                    icon: "fa-gem"
+                },
+                { 
+                    id: 42, 
+                    name: "Starlight Member Plus", 
+                    price: 194000, 
+                    oldPrice: 220000,
+                    description: "Starlight Member Plus Mobile Legends.",
+                    features: ["All Starlight Benefits", "Extra Diamonds", "Special Effects", "Instant"],
+                    icon: "fa-crown",
+                    badge: "PREMIUM"
+                }
+            ],
+            ff: [
+                { 
+                    id: 43, 
+                    name: "50 Diamond Free Fire", 
+                    price: 7000, 
+                    oldPrice: 8000,
+                    description: "Top up 50 Diamond Free Fire.",
+                    features: ["Instant Delivery", "All Servers", "Auto Process", "Safe"],
+                    icon: "fa-fire"
+                },
+                { 
+                    id: 44, 
+                    name: "210 Diamond Free Fire", 
+                    price: 27000, 
+                    oldPrice: 30000,
+                    description: "Top up 210 Diamond Free Fire.",
+                    features: ["Instant Delivery", "All Servers", "Auto Process", "Safe"],
+                    icon: "fa-fire"
+                },
+                { 
+                    id: 45, 
+                    name: "500 Diamond Free Fire", 
+                    price: 62000, 
+                    oldPrice: 70000,
+                    description: "Top up 500 Diamond Free Fire.",
+                    features: ["Instant Delivery", "All Servers", "Auto Process", "Safe"],
+                    icon: "fa-fire"
+                },
+                { 
+                    id: 46, 
+                    name: "1000 Diamond Free Fire", 
+                    price: 121000, 
+                    oldPrice: 135000,
+                    description: "Top up 1000 Diamond Free Fire.",
+                    features: ["Instant Delivery", "All Servers", "Auto Process", "Safe"],
+                    icon: "fa-fire",
+                    badge: "SPECIAL"
+                },
+                { 
+                    id: 47, 
+                    name: "Membership Mingguan", 
+                    price: 27500, 
+                    oldPrice: 30000,
+                    description: "Membership Mingguan 50 Diamond Free Fire.",
+                    features: ["50 Diamonds", "Daily Rewards", "7 Days", "Instant"],
+                    icon: "fa-gem"
+                },
+                { 
+                    id: 48, 
+                    name: "Membership Bulanan", 
+                    price: 79700, 
+                    oldPrice: 90000,
+                    description: "Membership Bulanan 60 Diamond Free Fire.",
+                    features: ["60 Diamonds", "Daily Rewards", "30 Days", "Instant"],
+                    icon: "fa-calendar-alt",
+                    badge: "POPULER"
+                }
+            ],
+            pulsa: [
+                { 
+                    id: 49, 
+                    name: "Telkomsel 10.000", 
+                    price: 11500, 
+                    oldPrice: 12000,
+                    description: "Pulsa Telkomsel 10.000.",
+                    features: ["Instant Process", "All Number", "24/7 Service", "No Admin"],
+                    icon: "fa-mobile-alt"
+                },
+                { 
+                    id: 50, 
+                    name: "Telkomsel 25.000", 
+                    price: 26500, 
+                    oldPrice: 27000,
+                    description: "Pulsa Telkomsel 25.000.",
+                    features: ["Instant Process", "All Number", "24/7 Service", "No Admin"],
+                    icon: "fa-mobile-alt"
+                },
+                { 
+                    id: 51, 
+                    name: "Telkomsel 50.000", 
+                    price: 51500, 
+                    oldPrice: 52000,
+                    description: "Pulsa Telkomsel 50.000.",
+                    features: ["Instant Process", "All Number", "24/7 Service", "No Admin"],
+                    icon: "fa-mobile-alt",
+                    badge: "POPULER"
+                },
+                { 
+                    id: 52, 
+                    name: "Telkomsel 100.000", 
+                    price: 101500, 
+                    oldPrice: 102000,
+                    description: "Pulsa Telkomsel 100.000.",
+                    features: ["Instant Process", "All Number", "24/7 Service", "No Admin"],
+                    icon: "fa-mobile-alt"
+                },
+                { 
+                    id: 53, 
+                    name: "Indosat 10.000", 
+                    price: 13000, 
+                    oldPrice: 13500,
+                    description: "Pulsa Indosat 10.000.",
+                    features: ["Instant Process", "All Number", "24/7 Service", "No Admin"],
+                    icon: "fa-mobile-alt"
+                },
+                { 
+                    id: 54, 
+                    name: "Indosat 25.000", 
+                    price: 28000, 
+                    oldPrice: 28500,
+                    description: "Pulsa Indosat 25.000.",
+                    features: ["Instant Process", "All Number", "24/7 Service", "No Admin"],
+                    icon: "fa-mobile-alt"
+                },
+                { 
+                    id: 55, 
+                    name: "Indosat 50.000", 
+                    price: 53000, 
+                    oldPrice: 53500,
+                    description: "Pulsa Indosat 50.000.",
+                    features: ["Instant Process", "All Number", "24/7 Service", "No Admin"],
+                    icon: "fa-mobile-alt"
+                },
+                { 
+                    id: 56, 
+                    name: "Indosat 100.000", 
+                    price: 101000, 
+                    oldPrice: 101500,
+                    description: "Pulsa Indosat 100.000.",
+                    features: ["Instant Process", "All Number", "24/7 Service", "No Admin"],
+                    icon: "fa-mobile-alt",
+                    badge: "BEST"
+                }
+            ],
+            jasa: [
+                { 
+                    id: 57, 
+                    name: "Jasa Unbanned WA Biasa", 
+                    price: 10000, 
+                    oldPrice: 15000,
+                    description: "Jasa unbanned WhatsApp untuk banned biasa.",
+                    features: ["Success Rate 95%", "Fast Process", "1-24 Hours", "Guaranteed"],
+                    icon: "fa-unlock",
+                    badge: "FAST"
+                },
+                { 
+                    id: 58, 
+                    name: "Jasa Unbanned WA Permanen", 
+                    price: 20000, 
+                    oldPrice: 30000,
+                    description: "Jasa unbanned WhatsApp permanen untuk hard banned.",
+                    features: ["Permanent Unban", "Success Rate 90%", "1-3 Days", "Guaranteed"],
+                    icon: "fa-unlock-alt"
+                },
+                { 
+                    id: 59, 
+                    name: "Jasa Unbanned WA Lumut", 
+                    price: 30000, 
+                    oldPrice: 45000,
+                    description: "Jasa unbanned WhatsApp untuk kasus lumut/bau.",
+                    features: ["Special Method", "Success Rate 85%", "3-7 Days", "Guaranteed"],
+                    icon: "fa-recycle"
+                },
+                { 
+                    id: 60, 
+                    name: "Jasa Banned WhatsApp", 
+                    price: 8000, 
+                    oldPrice: 10000,
+                    description: "Jasa banned WhatsApp untuk keperluan tertentu.",
+                    features: ["Any Number", "Fast Process", "Permanent", "Discreet"],
+                    icon: "fa-lock",
+                    badge: "SPECIAL"
+                },
+                { 
+                    id: 61, 
+                    name: "Murid Banned VIP", 
+                    price: 10000, 
+                    oldPrice: 15000,
+                    description: "Paket murid untuk belajar banned WhatsApp.",
+                    features: ["Tutorial", "Tools", "Support", "Community"],
+                    icon: "fa-graduation-cap"
+                },
+                { 
+                    id: 62, 
+                    name: "Murid Unbanned WhatsApp", 
+                    price: 10000, 
+                    oldPrice: 15000,
+                    description: "Paket murid untuk belajar unbanned WhatsApp.",
+                    features: ["Tutorial", "Tools", "Support", "Community"],
+                    icon: "fa-graduation-cap"
+                },
+                { 
+                    id: 63, 
+                    name: "Murid OTP Bypass", 
+                    price: 15000, 
+                    oldPrice: 20000,
+                    description: "Paket murid untuk belajar OTP bypass.",
+                    features: ["Advanced Tutorial", "Premium Tools", "VIP Support", "Private Group"],
+                    icon: "fa-user-secret"
+                },
+                { 
+                    id: 64, 
+                    name: "Murid Bug WhatsApp", 
+                    price: 20000, 
+                    oldPrice: 30000,
+                    description: "Paket murid untuk belajar bug WhatsApp.",
+                    features: ["Complete Tutorial", "All Tools", "Lifetime Support", "Master Class"],
+                    icon: "fa-bug",
+                    badge: "MASTER"
+                }
+            ]
+        };
+
+        // ==================== KONFIGURASI ====================
+        const TELEGRAM_BOT_TOKEN = '8473569015:AAHx0iiWYc9_Q2Dod4pPz7xyoWYbr1vu-K4';
+        const TELEGRAM_CHAT_ID = '7316225757';
+        const DISCOUNT_PERCENTAGE = 0.5; // 50% discount
+        const PROMO_END_DATE = new Date('2025-12-31T23:59:59').getTime();
+
+        // ==================== STATE VARIABLES ====================
+        let cart = JSON.parse(localStorage.getItem('acha_market_cart')) || [];
+        let currentCategory = 'panel';
+        let currentProduct = null;
+
+        // ==================== INISIALISASI ====================
+        document.addEventListener('DOMContentLoaded', function() {
+            // Setup loader
+            setTimeout(() => {
+                document.getElementById('loader').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loader').style.display = 'none';
+                }, 500);
+            }, 2000);
+
+            // Setup particles
+            generateParticles();
+
+            // Setup UI
+            setupCategories();
+            renderProducts();
+            updateCartUI();
+            setupPromoTimer();
+
+            // Setup event listeners
+            setupEventListeners();
+
+            // Typewriter effect
+            startTypewriter();
+        });
+
+        // ==================== UTILITY FUNCTIONS ====================
+        function generateParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 80;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random size
+                const size = Math.random() * 6 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random color
+                const colors = [
+                    'var(--neon-pink)',
+                    'var(--neon-blue)',
+                    'var(--neon-green)',
+                    'var(--neon-purple)',
+                    'var(--neon-orange)',
+                    'var(--neon-yellow)'
+                ];
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                // Random animation
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                particle.style.animationDuration = `${Math.random() * 3 + 3}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+
+        function setupCategories() {
+            const categories = [
+                { id: 'panel', name: 'Panel Pterodactyl', icon: 'fa-server' },
+                { id: 'nokos', name: 'NOKOS Luar Negeri', icon: 'fa-globe' },
+                { id: 'bug', name: 'Bug WhatsApp', icon: 'fab fa-whatsapp' },
+                { id: 'premium', name: 'App Premium', icon: 'fa-crown' },
+                { id: 'roblox', name: 'Roblox', icon: 'fa-cube' },
+                { id: 'ml', name: 'Mobile Legend', icon: 'fa-gamepad' },
+                { id: 'ff', name: 'Free Fire', icon: 'fa-fire' },
+                { id: 'pulsa', name: 'Pulsa & Kuota', icon: 'fa-mobile-alt' },
+                { id: 'jasa', name: 'Jasa Lainnya', icon: 'fa-tools' }
+            ];
+
+            const container = document.getElementById('categoryFilter');
+            categories.forEach(cat => {
+                const button = document.createElement('button');
+                button.className = `filter-btn ${cat.id === currentCategory ? 'active' : ''}`;
+                button.innerHTML = `<i class="${cat.icon}"></i> ${cat.name}`;
+                button.dataset.category = cat.id;
+                button.addEventListener('click', () => switchCategory(cat.id));
+                container.appendChild(button);
+            });
+        }
+
+        function switchCategory(category) {
+            currentCategory = category;
+            
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.category === category);
+            });
+            
+            // Render products
+            renderProducts();
+            
+            // Scroll to products
+            document.getElementById('products').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function renderProducts() {
+            const container = document.getElementById('productsContainer');
+            container.innerHTML = '';
+            
+            const categoryProducts = products[currentCategory] || [];
+            
+            if (categoryProducts.length === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 4rem;">
+                        <i class="fas fa-box-open" style="font-size: 4rem; color: var(--neon-blue); margin-bottom: 1rem;"></i>
+                        <h3 style="margin-bottom: 1rem;">Belum ada produk di kategori ini</h3>
+                        <p>Produk sedang dalam pengembangan. Silakan pilih kategori lain.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            categoryProducts.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                // Calculate discount
+                const discount = product.oldPrice ? 
+                    Math.round((1 - product.price / product.oldPrice) * 100) : 0;
+                
+                card.innerHTML = `
+                    ${product.badge ? `<div class="product-badge ${product.badge.toLowerCase()}">${product.badge}</div>` : ''}
+                    
+                    <div class="product-icon">
+                        <i class="${product.icon}"></i>
+                    </div>
+                    
+                    <h3 class="product-name">${product.name}</h3>
+                    
+                    <div class="product-price">
+                        ${product.oldPrice ? 
+                            `<span class="product-old-price">Rp ${product.oldPrice.toLocaleString()}</span>` : 
+                            ''
+                        }
+                        Rp ${product.price.toLocaleString()}
+                        ${discount > 0 ? 
+                            `<span class="product-discount">${discount}% OFF</span>` : 
+                            ''
+                        }
+                    </div>
+                    
+                    <p class="product-description">${product.description}</p>
+                    
+                    ${product.features ? `
+                        <ul class="product-features">
+                            ${product.features.map(feature => `
+                                <li><i class="fas fa-check"></i> ${feature}</li>
+                            `).join('')}
+                        </ul>
+                    ` : ''}
+                    
+                    <div class="product-actions">
+                        <button class="btn btn-add-cart" onclick="addToCart(${product.id}, '${product.name}', ${product.price})">
+                            <i class="fas fa-cart-plus"></i> Keranjang
+                        </button>
+                        <button class="btn btn-buy" onclick="openOrderModal(${product.id})">
+                            <i class="fas fa-bolt"></i> Beli Sekarang
+                        </button>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        // ==================== CART FUNCTIONS ====================
+        function addToCart(productId, productName, productPrice) {
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: productId,
+                    name: productName,
+                    price: productPrice,
+                    quantity: 1
+                });
+            }
+            
+            saveCart();
+            updateCartUI();
+            showNotification(`${productName} ditambahkan ke keranjang!`, 'success');
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+            updateCartUI();
+            showNotification('Produk dihapus dari keranjang', 'info');
+        }
+
+        function updateQuantity(productId, newQuantity) {
+            if (newQuantity < 1) {
+                removeFromCart(productId);
+                return;
+            }
+            
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity = newQuantity;
+                saveCart();
+                updateCartUI();
+            }
+        }
+
+        function clearCart() {
+            cart = [];
+            saveCart();
+            updateCartUI();
+            showNotification('Keranjang berhasil dikosongkan', 'info');
+        }
+
+        function saveCart() {
+            localStorage.setItem('acha_market_cart', JSON.stringify(cart));
+        }
+
+        function updateCartUI() {
+            const cartCount = document.querySelector('.cart-count');
+            const cartItems = document.getElementById('cartItems');
+            const cartSubtotal = document.getElementById('cartSubtotal');
+            const cartDiscount = document.getElementById('cartDiscount');
+            const cartTotal = document.getElementById('cartTotal');
+            
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update cart items
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="cart-empty">
+                        <i class="fas fa-shopping-cart" style="font-size: 3rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+                        <p>Keranjang belanja masih kosong</p>
+                    </div>
+                `;
+            } else {
+                let subtotal = 0;
+                
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    subtotal += itemTotal;
+                    
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'cart-item';
+                    itemElement.innerHTML = `
+                        <div class="cart-item-img">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">Rp ${item.price.toLocaleString()}</div>
+                            <div class="cart-item-quantity">
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity - 1})">-</button>
+                                <span class="quantity-value">${item.quantity}</span>
+                                <button class="quantity-btn" onclick="updateQuantity(${item.id}, ${item.quantity + 1})">+</button>
+                            </div>
+                        </div>
+                        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    `;
+                    cartItems.appendChild(itemElement);
+                });
+                
+                // Calculate discount (50% off)
+                const discount = subtotal * DISCOUNT_PERCENTAGE;
+                const total = subtotal - discount;
+                
+                // Update totals
+                cartSubtotal.textContent = subtotal.toLocaleString();
+                cartDiscount.textContent = discount.toLocaleString();
+                cartTotal.textContent = total.toLocaleString();
+            }
+        }
+
+        // ==================== ORDER MODAL ====================
+        function openOrderModal(productId) {
+            const product = Object.values(products)
+                .flat()
+                .find(p => p.id === productId);
+            
+            if (!product) return;
+            
+            currentProduct = product;
+            
+            // Fill modal
+            document.getElementById('modalProductName').value = product.name;
+            document.getElementById('modalProductPrice').value = `Rp ${product.price.toLocaleString()}`;
+            
+            // Show modal
+            document.getElementById('orderModal').classList.add('active');
+        }
+
+        function submitOrder() {
+            const form = document.getElementById('orderForm');
+            const customerName = document.getElementById('customerName').value;
+            const customerWhatsApp = document.getElementById('customerWhatsApp').value;
+            const customerEmail = document.getElementById('customerEmail').value;
+            const paymentMethod = document.getElementById('paymentMethod').value;
+            
+            // Validation
+            if (!customerName || !customerWhatsApp || !paymentMethod) {
+                showNotification('Harap lengkapi semua field yang wajib diisi!', 'error');
+                return;
+            }
+            
+            // Send to Telegram
+            sendToTelegram({
+                product: currentProduct.name,
+                price: currentProduct.price,
+                customerName,
+                customerWhatsApp,
+                customerEmail,
+                paymentMethod
+            });
+            
+            // Reset form
+            form.reset();
+            
+            // Close modal
+            document.getElementById('orderModal').classList.remove('active');
+            
+            // Show success message
+            showNotification(
+                'Pesanan berhasil dikirim! Admin akan menghubungi Anda via WhatsApp dalam 1-5 menit.',
+                'success'
+            );
+        }
+
+        function sendToTelegram(orderData) {
+            const message = `
+🛍 *PESANAN BARU - ACHA MARKET*
+━━━━━━━━━━━━━━━━━━
+📦 *Produk:* ${orderData.product}
+💰 *Harga:* Rp ${orderData.price.toLocaleString()}
+👤 *Nama:* ${orderData.customerName}
+📱 *WhatsApp:* ${orderData.customerWhatsApp}
+📧 *Email:* ${orderData.customerEmail || 'Tidak diisi'}
+💳 *Pembayaran:* ${orderData.paymentMethod}
+⏰ *Waktu:* ${new Date().toLocaleString('id-ID')}
+━━━━━━━━━━━━━━━━━━
+            `;
+            
+            fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'Markdown'
+                })
+            }).catch(error => {
+                console.error('Error sending to Telegram:', error);
+            });
+        }
+
+        // ==================== PROMO TIMER ====================
+        function setupPromoTimer() {
+            function updateTimer() {
+                const now = new Date().getTime();
+                const distance = PROMO_END_DATE - now;
+                
+                if (distance < 0) {
+                    document.querySelector('.promo-banner').style.display = 'none';
+                    return;
+                }
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+            
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        // ==================== NOTIFICATION SYSTEM ====================
+        function showNotification(message, type = 'info', title = '') {
+            const container = document.getElementById('notificationContainer');
+            const id = Date.now();
+            
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.id = `notification-${id}`;
+            notification.innerHTML = `
+                <div class="notification-icon">
+                    <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'}"></i>
+                </div>
+                <div class="notification-content">
+                    ${title ? `<div class="notification-title">${title}</div>` : ''}
+                    <div class="notification-message">${message}</div>
+                </div>
+                <button class="notification-close" onclick="closeNotification(${id})">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            container.appendChild(notification);
+            
+            // Show notification
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                closeNotification(id);
+            }, 5000);
+        }
+
+        function closeNotification(id) {
+            const notification = document.getElementById(`notification-${id}`);
+            if (notification) {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    notification.remove();
+                }, 300);
+            }
+        }
+
+        // ==================== TYPING EFFECT ====================
+        function startTypewriter() {
+            const texts = [
+                "☑️ Layanan Premium • Fast Response • 100% Garansi ☑️",
+                "🔥 Harga Terjangkau • Kualitas Terjamin • Support 24/7 🔥",
+                "🚀 Instant Delivery • Easy Payment • Customer Priority 🚀",
+                "💎 Bergaransi • Aman • Terpercaya • Professional 💎"
+            ];
+            
+            let textIndex = 0;
+            let charIndex = 0;
+            const element = document.querySelector('.typewriter');
+            
+            function type() {
+                if (charIndex < texts[textIndex].length) {
+                    element.textContent = texts[textIndex].substring(0, charIndex + 1);
+                    charIndex++;
+                    setTimeout(type, 50);
+                } else {
+                    setTimeout(() => {
+                        element.style.animation = 'none';
+                        setTimeout(() => {
+                            element.style.animation = '';
+                            charIndex = 0;
+                            textIndex = (textIndex + 1) % texts.length;
+                            type();
+                        }, 1000);
+                    }, 3000);
+                }
+            }
+            
+            type();
+        }
+
+        // ==================== EVENT LISTENERS ====================
+        function setupEventListeners() {
+            // Cart toggle
+            document.getElementById('cartIcon').addEventListener('click', () => {
+                document.getElementById('cartSidebar').classList.add('active');
+            });
+            
+            document.getElementById('closeCart').addEventListener('click', () => {
+                document.getElementById('cartSidebar').classList.remove('active');
+            });
+            
+            // Modal close
+            document.getElementById('closeModal').addEventListener('click', () => {
+                document.getElementById('orderModal').classList.remove('active');
+            });
+            
+            // Order form submit
+            document.getElementById('orderForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitOrder();
+            });
+            
+            // Checkout button
+            document.getElementById('checkoutBtn').addEventListener('click', () => {
+                if (cart.length === 0) {
+                    showNotification('Keranjang masih kosong! Tambahkan produk terlebih dahulu.', 'error');
+                    return;
+                }
+                
+                // Create order summary
+                let orderSummary = `*ORDER SUMMARY - KERANJANG BELANJA*\n\n`;
+                let subtotal = 0;
+                
+                cart.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    subtotal += itemTotal;
+                    orderSummary += `• ${item.name} (${item.quantity}x): Rp ${itemTotal.toLocaleString()}\n`;
+                });
+                
+                const discount = subtotal * DISCOUNT_PERCENTAGE;
+                const total = subtotal - discount;
+                
+                orderSummary += `\nSubtotal: Rp ${subtotal.toLocaleString()}`;
+                orderSummary += `\nDiskon (${DISCOUNT_PERCENTAGE * 100}%): -Rp ${discount.toLocaleString()}`;
+                orderSummary += `\n━━━━━━━━━━━━━━━━━━`;
+                orderSummary += `\n*TOTAL: Rp ${total.toLocaleString()}*`;
+                orderSummary += `\n━━━━━━━━━━━━━━━━━━`;
+                orderSummary += `\n\nUntuk melanjutkan pembayaran, silakan hubungi admin via WhatsApp.`;
+                
+                // Show summary
+                alert(orderSummary);
+                
+                // Open WhatsApp
+                const whatsappMessage = encodeURIComponent(orderSummary);
+                window.open(`https://wa.me/6281234567890?text=${whatsappMessage}`, '_blank');
+                
+                // Clear cart
+                clearCart();
+                document.getElementById('cartSidebar').classList.remove('active');
+            });
+            
+            // Clear cart button
+            document.getElementById('clearCart').addEventListener('click', clearCart);
+            
+            // Mobile menu
+            document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+                document.getElementById('navMenu').classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    document.getElementById('navMenu').classList.remove('active');
+                });
+            });
+            
+            // Back to top
+            window.addEventListener('scroll', () => {
+                const backToTop = document.getElementById('backToTop');
+                if (window.scrollY > 300) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+            
+            // FAQ accordion
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const item = question.parentElement;
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Close modal on outside click
+            document.getElementById('orderModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
+            
+            // Smooth scroll for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // ==================== HELPER FUNCTIONS ====================
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Expose functions to global scope for onclick handlers
+        window.addToCart = addToCart;
+        window.removeFromCart = removeFromCart;
+        window.updateQuantity = updateQuantity;
+        window.openOrderModal = openOrderModal;
+        window.closeNotification = closeNotification;
+        window.scrollToTop = scrollToTop;
+    </script>
+</body>
+</html>
